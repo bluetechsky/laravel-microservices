@@ -1,3 +1,62 @@
+## How to run == Cách chạy 
+(Chú ý: Đã tạo thêm file traefik.toml trong thư mục docker)
+
+### Terminal 1:
+```
+cd laravel-microservices/user 
+docker run --rm -v $(pwd):/app composer install
+```
+
+### Terminal 2:
+```
+cd laravel-microservices/order
+docker run --rm -v $(pwd):/app composer install
+```
+
+### Terminal 3:
+```
+cd laravel-microservices/inventory
+docker run --rm -v $(pwd):/app composer install
+```
+
+### Terminal 4:
+```
+cd laravel-microservices/api-gateway 
+docker run --rm -v $(pwd):/app composer instal
+```
+
+#### Create the external network
+```
+    docker network create traefik_webgateway
+```
+#### Create the external network
+```
+    docker network create traefik_webgateway
+```
+
+#### Update the your hosts file
+```
+    # Update /etc/hosts file
+    192.168.99.100 lm.loc user.lm.loc inventory.lm.loc order.lm.loc api.lm.loc
+```
+## Run
+docker-compose -f docker/docker-compose.yml up -d --build
+
+## Open in browser
+
+http://localhost:8080/dashboard/#/http/routers
+
+
+http://api-docker.docker.localhost/
+http://inventory-docker.docker.localhost/
+http://order-docker.docker.localhost/
+http://user-docker.docker.localhost/
+
+OK DONE
+
+-----------------------------------------
+Hướng dẫn gốc == origin guide:
+
 # Laravel Microservices
 
 A simple laravel pseudo-microservices demo project.

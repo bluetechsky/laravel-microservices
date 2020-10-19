@@ -1,0 +1,54 @@
+debug = true
+logLevel = "DEBUG"
+
+[Global]
+  CheckNewVersion = false
+  SendAnonymousUsage = false
+
+[ServersTransport]
+  InsecureSkipVerify = true
+
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+
+[web]
+  insecure = true
+
+[api]
+  insecure = true
+
+[docker]
+  endpoint = "unix:///var/run/docker.sock"
+  domain = "docker.localhost"
+  watch = true
+  exposedbydefault = false
+
+################################################################
+# Docker configuration backend
+################################################################
+
+# Enable Docker configuration backend
+[providers.docker]
+
+  # Docker server endpoint. Can be a tcp or a unix socket endpoint.
+  #
+  # Required
+  # Default: "unix:///var/run/docker.sock"
+  #
+  # endpoint = "tcp://192.168.99.100:80"
+
+  # Default host rule.
+  #
+  # Optional
+  # Default: "Host(`{{ normalize .Name }}`)"
+  #
+  defaultRule = "Host(`{{ normalize .Name }}.docker.localhost`)"
+
+  # Expose containers by default in traefik
+  #
+  # Optional
+  # Default: true
+  #
+  exposedByDefault = false
